@@ -41,12 +41,30 @@ issueを実装する前に以下の手順でリポジトリを準備する：
 
 1. ローカルにリポジトリが存在するか確認する（例: `~/dev/<owner>/<repo>`）
 2. 存在しない場合は `gh repo clone <owner>/<repo> ~/dev/<owner>/<repo>` でcloneする
-3. git worktreeで作業ディレクトリを作成する：
+3. origin main を最新化する：
+   ```bash
+   cd ~/dev/<owner>/<repo>
+   git fetch origin main
+   git checkout main
+   git merge --ff-only origin/main
+   ```
+4. git worktreeで作業ディレクトリを作成する：
    ```bash
    cd ~/dev/<owner>/<repo>
    git worktree add ~/dev/<owner>/<repo>-worktree/<branch-name> -b <branch-name>
    ```
-4. issue-implementer は worktree のパス内で作業する
+5. issue-implementer は worktree のパス内で作業する
+
+## PR作成前のConflict解消
+
+PRを作成する前に、origin main との conflict を解消する：
+
+```bash
+cd ~/dev/<owner>/<repo>-worktree/<branch-name>
+git fetch origin main
+git rebase origin/main
+# conflict が発生した場合は解消してから git rebase --continue
+```
 
 ## GitHub CLI Commands
 
