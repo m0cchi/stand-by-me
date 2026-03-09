@@ -4,15 +4,21 @@ repositories:
     labels:
       - claude
     priority: normal
+    allowed_authors:
+      - m0cchi
   - owner: m0cchi
     repo: emacsenv
     labels:
       - claude
       - high
     priority: high
+    allowed_authors:
+      - m0cchi
   - owner: m0cchi
     repo: stand-by-me
     labels:
       - claude
     priority: normal
+    allowed_authors:
+      - m0cchi
 

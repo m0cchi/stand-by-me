@@ -5,9 +5,13 @@ repositories:
       - bug
       - needs-review
     priority: high
+    allowed_authors:
+      - octocat
+      - trusted-contributor
 
   - owner: my-org
     repo: my-app
     labels:
       - claude
     priority: normal
+    # allowed_authors を省略した場合は全作成者を対象にする
