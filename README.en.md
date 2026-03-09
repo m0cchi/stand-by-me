@@ -26,11 +26,41 @@ repositories:
   - owner: your-org
     repo: your-repo
     labels:
-      - claude       # Issues with this label will be processed
-    priority: high   # high | normal | low
+      - claude              # Issues with this label will be processed
+    priority: high          # high | normal | low
+    allowed_authors:        # Allowed issue authors (omit to allow all authors)
+      - trusted-user
 ```
 
 To make an issue eligible for processing, attach the label specified in `labels` to the issue on GitHub.
+
+Setting `allowed_authors` restricts automatic processing to issues created by the specified users. **Configuring `allowed_authors` is strongly recommended to prevent prompt injection attacks.**
+
+## Security
+
+This system passes the contents of GitHub issues to an AI agent for automatic execution. Malicious third parties may attempt prompt injection attacks by embedding harmful instructions in issues.
+
+### Recommended Mitigations
+
+- **Set `allowed_authors`**: Only process issues created by trusted users
+- **Use `labels` filters**: Only process issues with specific labels (configure label permissions so only repository administrators can apply them)
+- **Regularly review agent actions**: Audit what the agent has executed
+
+### Example `allowed_authors` configuration
+
+```yaml
+repositories:
+  - owner: your-org
+    repo: your-repo
+    labels:
+      - claude
+    priority: normal
+    allowed_authors:
+      - your-username     # Allow only your own account
+      - trusted-teammate  # Add trusted team members
+```
+
+If `allowed_authors` is omitted, issues from all users will be processed. Always configure this setting when using with public repositories.
 
 ## Usage
 
