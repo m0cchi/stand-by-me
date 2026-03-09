@@ -1,0 +1,13 @@
+repositories:
+  - owner: octocat
+    repo: hello-world
+    labels:
+      - bug
+      - needs-review
+    priority: high
+
+  - owner: my-org
+    repo: my-app
+    labels:
+      - claude
+    priority: normal

@@ -1,0 +1,18 @@
+repositories:
+  - owner: m0cchi
+    repo: emacsenv
+    labels:
+      - claude
+    priority: normal
+  - owner: m0cchi
+    repo: emacsenv
+    labels:
+      - claude
+      - high
+    priority: high
+  - owner: m0cchi
+    repo: stand-by-me
+    labels:
+      - claude
+    priority: normal
+
