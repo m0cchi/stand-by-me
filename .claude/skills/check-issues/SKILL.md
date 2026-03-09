@@ -7,7 +7,7 @@ description: Check all repositories defined in repositories.yaml for open issues
 
 Use the issue-fetcher agent to read repositories.yaml and fetch all open issues from every repository listed there.
 
-`allowed_authors` が設定されているリポジトリでは、許可された作成者のissueのみが返される。
+`allowed_authors` が設定されているリポジトリでは、許可された作成者のissueのみが返される。`allowed_authors` が未設定の場合は `gh api user -q ".login"` で取得した現在のユーザーのissueのみが返される。
 
 Display the results clearly so the user can decide which issues to process next.
 

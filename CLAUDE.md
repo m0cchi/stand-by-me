@@ -16,7 +16,7 @@ repositories:
       - <label to filter>
     priority: high | normal | low
     allowed_authors:        # オプション: 許可する作成者のリスト
-      - <github username>   # 省略した場合は全作成者を対象にする
+      - <github username>   # 省略した場合は gh api user の結果（現在のユーザー）を対象にする
 ```
 
 issueを取得する際は必ずこのファイルを読み込み、全リポジトリを対象にしてください。
@@ -28,7 +28,7 @@ issueを取得する際は必ずこのファイルを読み込み、全リポジ
 1. `repositories.yaml` を読み込んでリポジトリ一覧を取得
 2. 各リポジトリのissueを `priority` 順（high → normal → low）に取得
 3. `labels` に一致するissueのみを対象にする
-4. `allowed_authors` が設定されている場合、その作成者のissueのみを対象にする（未設定の場合は全作成者を対象）
+4. `allowed_authors` が設定されている場合、その作成者のissueのみを対象にする。未設定の場合は `gh api user -q ".login"` で取得した現在のユーザーを対象にする
 5. TaskCreate でタスクを登録し、status を `in_progress` に設定する
 6. issue-analyzer エージェントで分析
 7. issue-implementer エージェントで実装
