@@ -24,8 +24,11 @@ issueを取得する際は必ずこのファイルを読み込み、全リポジ
 1. `repositories.yaml` を読み込んでリポジトリ一覧を取得
 2. 各リポジトリのissueを `priority` 順（high → normal → low）に取得
 3. `labels` に一致するissueのみを対象にする
-4. issue-analyzer エージェントで分析
-5. issue-implementer エージェントで実装
+4. TaskCreate でタスクを登録し、status を `in_progress` に設定する
+5. issue-analyzer エージェントで分析
+6. issue-implementer エージェントで実装
+7. 実装完了後、TaskUpdate でタスクの status を `completed` に更新する
+8. 失敗・スキップした場合は TaskUpdate で status を `failed` に更新する
 
 ## Repository Clone & Worktree
 
