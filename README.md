@@ -26,11 +26,41 @@ repositories:
   - owner: your-org
     repo: your-repo
     labels:
-      - claude       # このラベルがついたissueを処理対象にする
-    priority: high   # high | normal | low
+      - claude              # このラベルがついたissueを処理対象にする
+    priority: high          # high | normal | low
+    allowed_authors:        # 処理を許可するissue作成者（省略時は全員を対象）
+      - trusted-user
 ```
 
 issueを処理対象にするには、対象issueに `labels` で指定したラベルをGitHub上で付与してください。
+
+`allowed_authors` を設定すると、指定したユーザーが作成したissueのみを自動処理します。**プロンプトインジェクション攻撃を防ぐため、`allowed_authors` の設定を強く推奨します。**
+
+## セキュリティ
+
+このシステムはGitHub issueの内容をAIエージェントに渡して自動実行します。悪意のある第三者がissueにプロンプトインジェクション攻撃を仕込む可能性があります。
+
+### 推奨される対策
+
+- **`allowed_authors` を設定する**: 信頼できるユーザーが作成したissueのみを処理対象にする
+- **`labels` フィルターを活用する**: 特定のラベルが付いたissueのみを処理する（ラベルはリポジトリ管理者のみが付与できる設定にする）
+- **処理内容を定期的に確認する**: エージェントが実行した内容をレビューする
+
+### `allowed_authors` の設定例
+
+```yaml
+repositories:
+  - owner: your-org
+    repo: your-repo
+    labels:
+      - claude
+    priority: normal
+    allowed_authors:
+      - your-username     # 自分のアカウントのみを許可
+      - trusted-teammate  # 信頼できるチームメンバーを追加
+```
+
+`allowed_authors` を省略した場合は全ユーザーのissueが処理対象になります。パブリックリポジトリで使用する場合は必ず設定してください。
 
 ## 使い方
 
