@@ -44,6 +44,12 @@ issue-analyzer の分析結果をもとにコード変更を実装し、PRを作
 6. **team-lead に実装完了を報告し、issue-reviewer によるレビューを依頼する**
    - 実装が完了したらPRは作成せず、team-lead に実装完了を報告する
    - team-lead が issue-reviewer エージェントを起動してレビューを行う
+   - 報告内容には以下を含めること：
+     - owner
+     - repo
+     - issue_number
+     - branch_name
+     - worktree_path
 
 7. **レビュー承認後（APPROVED）、team-lead からPR作成指示を受けてPRを作成する**
    - Conflict解消：
