@@ -108,4 +108,4 @@ gh issue comment <number> --repo <owner>/<repo> --body "message"
 - コミットメッセージ: `Fix <owner>/<repo>#<number>: <description>`
 - PRは必ず対象リポジトリに作成し、issueにリンクする
 - 実装作業は必ず git worktree 内で行う（直接mainブランチで作業しない）
-- clone先: `~/dev/<owner>/<repo>`、worktree先: `~/dev/<owner>/<repo>-worktree/<branch-name>`
+- clone先: `/tmp/stand-by-me/<owner>/<repo>`、worktree先: `/tmp/stand-by-me/<owner>/<repo>-worktree/<branch-name>`
