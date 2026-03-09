@@ -14,4 +14,4 @@ repositories:
     labels:
       - claude
     priority: normal
-    # allowed_authors を省略した場合は全作成者を対象にする
+    # allowed_authors を省略した場合は gh api user -q ".login" で取得した現在のユーザーを対象にする
