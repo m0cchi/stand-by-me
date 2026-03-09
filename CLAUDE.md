@@ -32,8 +32,26 @@ issueを取得する際は必ずこのファイルを読み込み、全リポジ
 5. TaskCreate でタスクを登録し、status を `in_progress` に設定する
 6. issue-analyzer エージェントで分析
 7. issue-implementer エージェントで実装
-8. 実装完了後、TaskUpdate でタスクの status を `completed` に更新する
-9. 失敗・スキップした場合は TaskUpdate で status を `failed` に更新する
+8. issue-reviewer エージェントでコードレビューを行う
+   - レビューで問題が見つかった場合は issue-implementer エージェントに差し戻して再修正させる
+   - 差し戻しと再修正は最大3回まで繰り返す
+   - 3回を超えても承認されない場合はスキップとして処理する
+9. レビュー承認後、TaskUpdate でタスクの status を `completed` に更新する
+10. 失敗・スキップした場合は TaskUpdate で status を `failed` に更新する
+
+## Review Process
+
+issue-reviewer エージェントは以下の観点でコードレビューを行う：
+
+- issue の要件を満たしているか
+- セキュリティ上の問題がないか（OWASP Top 10 等）
+- 既存のコードスタイルに合っているか
+- 不必要な変更が含まれていないか（over-engineering、無関係なリファクタリング等）
+- テストが適切に追加されているか（必要な場合）
+
+レビュー結果は以下のいずれかを返す：
+- `APPROVED`: 問題なし、PRを作成してよい
+- `CHANGES_REQUESTED`: 修正が必要、具体的な修正内容を issue-implementer に伝えて差し戻す
 
 ## Repository Clone & Worktree
 
