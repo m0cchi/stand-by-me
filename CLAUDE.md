@@ -15,17 +15,25 @@ repositories:
     labels:
       - <label to filter>
     priority: high | normal | low
+    allowed_authors:        # オプション: 許可する作成者のリスト
+      - <github username>   # 省略した場合は全作成者を対象にする
 ```
 
 issueを取得する際は必ずこのファイルを読み込み、全リポジトリを対象にしてください。
+
+`allowed_authors` が設定されている場合、そのリストに含まれる作成者のissueのみを自動処理の対象にします。
 
 ## Workflow
 
 1. `repositories.yaml` を読み込んでリポジトリ一覧を取得
 2. 各リポジトリのissueを `priority` 順（high → normal → low）に取得
 3. `labels` に一致するissueのみを対象にする
-4. issue-analyzer エージェントで分析
-5. issue-implementer エージェントで実装
+4. `allowed_authors` が設定されている場合、その作成者のissueのみを対象にする（未設定の場合は全作成者を対象）
+5. TaskCreate でタスクを登録し、status を `in_progress` に設定する
+6. issue-analyzer エージェントで分析
+7. issue-implementer エージェントで実装
+8. 実装完了後、TaskUpdate でタスクの status を `completed` に更新する
+9. 失敗・スキップした場合は TaskUpdate で status を `failed` に更新する
 
 ## Repository Clone & Worktree
 
