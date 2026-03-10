@@ -35,6 +35,10 @@ issueをサマリーとして表示した後、以下の手順でタスクリス
    - `run_in_background`: true
    - prompt にはタスクの詳細（owner, repo, issue_number, ブランチ名, コミットメッセージ）を含める
    - promptには「TaskUpdate でタスク #N の status を in_progress・owner を implementer-N に設定してから作業開始すること」を明記する
-   - promptには「完了後は TaskUpdate でタスク status を completed に更新し、SendMessage で team-lead に完了報告すること」を明記する
+   - promptには「実装完了後はすぐにPRを作成せず、SendMessage で team-lead にレビュー依頼を送ること」を明記する
+   - promptには「team-lead から APPROVED 通知を受け取った後、PRを作成し、issueにPRのURLをコメントしてから、SendMessage で team-lead にPRのURLを含めた完了報告をすること」を明記する
 3. チームが起動したことをユーザーに報告する
-4. 全 implementer から完了報告を受け取ったら `SendMessage(type: "shutdown_request")` で全員をシャットダウンし、`TeamDelete` でチームを削除する
+4. implementer からレビュー依頼を受け取ったら change-reviewer エージェントでレビューを行う
+   - APPROVED の場合: implementer に `SendMessage` で APPROVED を通知する
+   - CHANGES_REQUESTED の場合: implementer に `SendMessage` で修正内容を伝えて差し戻す（最大3回）
+5. implementer から完了報告（PR URLを含む）を受け取ったら、PR URLが報告されていることを確認してから `SendMessage(type: "shutdown_request")` で全員をシャットダウンし、`TeamDelete` でチームを削除する
