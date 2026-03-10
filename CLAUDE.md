@@ -41,15 +41,28 @@ issueを取得する際は必ずこのファイルを読み込み、全リポジ
 
 ## Review Process
 
-change-reviewer エージェントは以下の観点でコードレビューを行う：
+change-reviewer エージェントは以下の3つの専門レビュワーにレビューを委譲し、結果を集約する：
 
+### implementation-reviewer（実装確認）
 - issue の要件を満たしているか
-- セキュリティ上の問題がないか（OWASP Top 10 等）
 - 既存のコードスタイルに合っているか
 - 不必要な変更が含まれていないか（over-engineering、無関係なリファクタリング等）
-- テストが適切に追加されているか（必要な場合）
+- コード品質に問題がないか
 
-レビュー結果は以下のいずれかを返す：
+### security-reviewer（セキュリティ確認）
+- セキュリティ上の問題がないか（OWASP Top 10 等）
+- インジェクション攻撃の脆弱性がないか
+- 機密情報がハードコードされていないか
+- 認証・認可に問題がないか
+
+### consistency-reviewer（整合性確認）
+- テストが適切に追加されているか（必要な場合）
+- 既存のコードベースとの整合性が取れているか
+- 副作用がないか
+
+### 最終判定
+- 全てのレビュワーが APPROVED を返した場合のみ最終結果は `APPROVED`
+- いずれかのレビュワーが CHANGES_REQUESTED を返した場合、最終結果は `CHANGES_REQUESTED`
 - `APPROVED`: 問題なし、PRを作成してよい
 - `CHANGES_REQUESTED`: 修正が必要、具体的な修正内容を issue-implementer に伝えて差し戻す
 
