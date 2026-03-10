@@ -70,19 +70,19 @@ change-reviewer エージェントは以下の3つの専門レビュワーにレ
 
 issueを実装する前に以下の手順でリポジトリを準備する：
 
-1. ローカルにリポジトリが存在するか確認する（例: `/tmp/<owner>/<repo>`）
-2. 存在しない場合は `gh repo clone <owner>/<repo> /tmp/<owner>/<repo>` でcloneする
+1. ローカルにリポジトリが存在するか確認する（例: `/tmp/stand-by-me/<owner>/<repo>`）
+2. 存在しない場合は `gh repo clone <owner>/<repo> /tmp/stand-by-me/<owner>/<repo>` でcloneする
 3. origin main を最新化する：
    ```bash
-   cd /tmp/<owner>/<repo>
+   cd /tmp/stand-by-me/<owner>/<repo>
    git fetch origin main
    git checkout main
    git merge --ff-only origin/main
    ```
 4. git worktreeで作業ディレクトリを作成する：
    ```bash
-   cd /tmp/<owner>/<repo>
-   git worktree add /tmp/<owner>/<repo>-worktree/<branch-name> -b <branch-name>
+   cd /tmp/stand-by-me/<owner>/<repo>
+   git worktree add /tmp/stand-by-me/<owner>/<repo>-worktree/<branch-name> -b <branch-name>
    ```
 5. issue-implementer は worktree のパス内で作業する
 
@@ -91,7 +91,7 @@ issueを実装する前に以下の手順でリポジトリを準備する：
 PRを作成する前に、origin main との conflict を解消する：
 
 ```bash
-cd /tmp/<owner>/<repo>-worktree/<branch-name>
+cd /tmp/stand-by-me/<owner>/<repo>-worktree/<branch-name>
 git fetch origin main
 git rebase origin/main
 # conflict が発生した場合は解消してから git rebase --continue
