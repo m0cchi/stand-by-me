@@ -11,7 +11,7 @@ issue-analyzer の分析結果をもとにコード変更を実装し、PRを作
 
 - `<owner>/<repo>#<number>` の形式でissueを受け取る
 - issue-analyzer の分析結果（実装計画）を受け取る
-- (再修正の場合) issue-reviewer からのレビュー結果（Required Changes）
+- (再修正の場合) change-reviewer からのレビュー結果（Required Changes）
 
 ## Steps
 
@@ -24,7 +24,7 @@ issue-analyzer の分析結果をもとにコード変更を実装し、PRを作
    - 必ず実装前に対象ファイルを Read して内容を確認する
    - 最小限の変更に留める（over-engineering 禁止）
    - テストコードも追加する
-   - 再修正の場合は issue-reviewer の Required Changes に従って修正する
+   - 再修正の場合は change-reviewer の Required Changes に従って修正する
 
 3. **テスト実行**
    - プロジェクトのテストコマンドを実行して動作確認
@@ -41,9 +41,9 @@ issue-analyzer の分析結果をもとにコード変更を実装し、PRを作
      --body "実装を開始しました。ブランチ: issue-<owner>-<repo>-<number>-..."
    ```
 
-6. **team-lead に実装完了を報告し、issue-reviewer によるレビューを依頼する**
+6. **team-lead に実装完了を報告し、change-reviewer によるレビューを依頼する**
    - 実装が完了したらPRは作成せず、team-lead に実装完了を報告する
-   - team-lead が issue-reviewer エージェントを起動してレビューを行う
+   - team-lead が change-reviewer エージェントを起動してレビューを行う
    - 報告内容には以下を含めること：
      - owner
      - repo

@@ -32,7 +32,7 @@ issueを取得する際は必ずこのファイルを読み込み、全リポジ
 5. TaskCreate でタスクを登録し、status を `in_progress` に設定する
 6. issue-analyzer エージェントで分析
 7. issue-implementer エージェントで実装
-8. issue-reviewer エージェントでコードレビューを行う
+8. change-reviewer エージェントでコードレビューを行う
    - レビューで問題が見つかった場合は issue-implementer エージェントに差し戻して再修正させる
    - 差し戻しと再修正は最大3回まで繰り返す
    - 3回を超えても承認されない場合はスキップとして処理する
@@ -41,7 +41,7 @@ issueを取得する際は必ずこのファイルを読み込み、全リポジ
 
 ## Review Process
 
-issue-reviewer エージェントは以下の観点でコードレビューを行う：
+change-reviewer エージェントは以下の観点でコードレビューを行う：
 
 - issue の要件を満たしているか
 - セキュリティ上の問題がないか（OWASP Top 10 等）

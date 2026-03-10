@@ -1,5 +1,5 @@
 ---
-name: issue-reviewer
+name: change-reviewer
 description: Review code changes for a GitHub issue implementation. Checks if the implementation meets requirements, follows coding standards, and has no security issues. Returns APPROVED or CHANGES_REQUESTED with specific feedback.
 tools: Read, Grep, Glob, Bash
 ---
