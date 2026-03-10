@@ -1,10 +1,10 @@
 # Stand By Me
 
-Claude Code のエージェント機能を使って、GitHub issue を自動処理するシステムです。
+Claude Code のエージェント機能を使って、GitHub issue を自動処理するシステムである。
 
 ## 概要
 
-`repositories.yaml` に監視対象リポジトリを定義すると、Claude Code が定期的にissueをチェックし、分析・実装・PRの作成まで自動で行います。
+`repositories.yaml` に監視対象リポジトリを定義すると、Claude Code が定期的にissueをチェックし、分析・実装・PRの作成まで自動で行う。
 
 ## セットアップ
 
@@ -19,7 +19,7 @@ gh auth login
 
 ### リポジトリの設定
 
-`repositories.yaml` を編集して監視対象リポジトリを追加します。
+`repositories.yaml` を編集して監視対象リポジトリを追加する。
 
 ```yaml
 repositories:
@@ -32,13 +32,13 @@ repositories:
       - trusted-user
 ```
 
-issueを処理対象にするには、対象issueに `labels` で指定したラベルをGitHub上で付与してください。
+issueを処理対象にするには、対象issueに `labels` で指定したラベルをGitHub上で付与する。
 
-`allowed_authors` を設定すると、指定したユーザーが作成したissueのみを自動処理します。**プロンプトインジェクション攻撃を防ぐため、`allowed_authors` の設定を強く推奨します。**
+`allowed_authors` を設定すると、指定したユーザーが作成したissueのみを自動処理する。**プロンプトインジェクション攻撃を防ぐため、`allowed_authors` の設定を強く推奨する。**
 
 ## セキュリティ
 
-このシステムはGitHub issueの内容をAIエージェントに渡して自動実行します。悪意のある第三者がissueにプロンプトインジェクション攻撃を仕込む可能性があります。
+このシステムはGitHub issueの内容をAIエージェントに渡して自動実行する。悪意のある第三者がissueにプロンプトインジェクション攻撃を仕込む可能性がある。
 
 ### 推奨される対策
 
@@ -60,11 +60,11 @@ repositories:
       - trusted-teammate  # 信頼できるチームメンバーを追加
 ```
 
-`allowed_authors` を省略した場合は全ユーザーのissueが処理対象になります。パブリックリポジトリで使用する場合は必ず設定してください。
+`allowed_authors` を省略した場合は全ユーザーのissueが処理対象になる。パブリックリポジトリで使用する場合は必ず設定する。
 
 ## 使い方
 
-このプロジェクトのディレクトリで Claude Code を起動します。
+このプロジェクトのディレクトリで Claude Code を起動する。
 
 ```bash
 cd stand-by-me
@@ -77,7 +77,7 @@ claude
 /check-issues
 ```
 
-`repositories.yaml` に定義された全リポジトリの対象issueを一覧表示します。
+`repositories.yaml` に定義された全リポジトリの対象issueを一覧表示する。
 
 ### 定期監視
 
@@ -85,7 +85,7 @@ claude
 /loop 5m /check-issues
 ```
 
-5分ごとに自動でissueをチェックします。
+5分ごとに自動でissueをチェックする。
 
 ### issueの処理
 
