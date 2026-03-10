@@ -102,11 +102,15 @@ stand-by-me/
 ├── CLAUDE.md                      # Rule definitions for agents
 └── .claude/
     ├── agents/
-    │   ├── issue-fetcher/         # Reads YAML and fetches issue list
-    │   ├── issue-analyzer/        # Analyzes individual issues and creates implementation plans
-    │   └── issue-implementer/     # Implements changes and creates PRs
+    │   ├── issue-fetcher/             # Reads YAML and fetches issue list
+    │   ├── issue-analyzer/            # Analyzes individual issues and creates implementation plans
+    │   ├── issue-implementer/         # Implements changes and creates PRs
+    │   ├── change-reviewer/           # Aggregates review results from specialist reviewers
+    │   ├── implementation-reviewer/   # Reviews implementation correctness and code quality
+    │   ├── security-reviewer/         # Reviews security concerns
+    │   └── consistency-reviewer/      # Reviews test coverage and codebase consistency
     └── skills/
-        └── check-issues/          # Entry point for issue checking
+        └── check-issues/              # Entry point for issue checking
 ```
 
 ## Agent Roles
@@ -116,3 +120,7 @@ stand-by-me/
 | `issue-fetcher` | Reads `repositories.yaml` and fetches issues from all repositories |
 | `issue-analyzer` | Analyzes a specified issue and creates an implementation plan |
 | `issue-implementer` | Applies code changes based on the analysis result and creates a PR |
+| `change-reviewer` | Delegates to three specialist reviewers and aggregates results |
+| `implementation-reviewer` | Verifies issue requirements, code style, and quality |
+| `security-reviewer` | Checks for security issues (OWASP Top 10, etc.) |
+| `consistency-reviewer` | Reviews test coverage and consistency with the existing codebase |

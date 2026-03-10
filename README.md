@@ -102,11 +102,15 @@ stand-by-me/
 ├── CLAUDE.md                      # エージェントへのルール定義
 └── .claude/
     ├── agents/
-    │   ├── issue-fetcher/         # YAMLを読んでissue一覧を取得
-    │   ├── issue-analyzer/        # 個別issueを分析・計画作成
-    │   └── issue-implementer/     # 実装してPRを作成
+    │   ├── issue-fetcher/             # YAMLを読んでissue一覧を取得
+    │   ├── issue-analyzer/            # 個別issueを分析・計画作成
+    │   ├── issue-implementer/         # 実装してPRを作成
+    │   ├── change-reviewer/           # レビュー結果を集約
+    │   ├── implementation-reviewer/   # 実装内容を確認
+    │   ├── security-reviewer/         # セキュリティを確認
+    │   └── consistency-reviewer/      # コードベースとの整合性を確認
     └── skills/
-        └── check-issues/          # issue確認のエントリポイント
+        └── check-issues/              # issue確認のエントリポイント
 ```
 
 ## エージェントの役割
@@ -116,3 +120,8 @@ stand-by-me/
 | `issue-fetcher` | `repositories.yaml` を読み込み、全リポジトリのissueを取得 |
 | `issue-analyzer` | 指定issueを分析し、実装計画を作成 |
 | `issue-implementer` | 分析結果をもとにコードを変更し、PRを作成 |
+| `change-reviewer` | 3つの専門レビュワーにレビューを委譲し、結果を集約 |
+| `implementation-reviewer` | issue要件の充足・コードスタイル・品質を確認 |
+| `security-reviewer` | セキュリティ上の問題（OWASP Top 10等）を確認 |
+| `consistency-reviewer` | テストの適切さ・コードベースとの整合性を確認 |
+
